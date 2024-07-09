@@ -30,15 +30,5 @@ jobs:
         run: |
           npm install
 
-      - name: Wait for MySQL to be ready
-        run: |
-          for i in {1..30}; do
-            if mysqladmin ping -h 127.0.0.1 -uroot -proot1234 --silent; then
-              break
-            fi
-            echo 'Waiting for MySQL...'
-            sleep 1
-          done
-
       - name: Run tests
         run: npm run test # Assumes your test script is defined in package.json
