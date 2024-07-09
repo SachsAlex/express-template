@@ -12,20 +12,17 @@ jobs:
         ports:
           - 3306:3306
         options: >
-          --health-cmd="mysqladmin ping --silent" 
-          --health-interval=10s 
-          --health-timeout=5s 
-          --health-retries=3
+          --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
         env:
           MYSQL_ROOT_PASSWORD: root1234
           MYSQL_DATABASE: todo_app_test
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: "16" # Adjust to your Node.js version
 
@@ -44,4 +41,4 @@ jobs:
           done
 
       - name: Run tests
-        run: npm test # Assumes your test script is defined in package.json
+        run: npm run test # Assumes your test script is defined in package.json
