@@ -11,6 +11,7 @@ jobs:
         image: mysql:8
         ports:
           - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
         env:
           MYSQL_ROOT_PASSWORD: root1234
           MYSQL_DATABASE: todo_app_test
@@ -23,6 +24,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "16" # Adjust to your Node.js version
+
+      - name: Start Database
+        run: |
+          sudo /etc/init.d/mysql start
+          sudo mysql -uroot -proot -e 'CREATE DATABASE IF NOT EXISTS some_db;'
 
       - name: Install dependencies
         run: |
