@@ -25,16 +25,16 @@ jobs:
         with:
           node-version: "16" # Adjust to your Node.js version
 
-    - name: Wait for MySQL to be ready
-      run: |
-        for i in {1..30}; do
-          if mysqladmin ping -h localhost -uroot -proot1234 --silent; then
-            break
-          fi
-          echo 'Waiting for MySQL to be ready...'
-          sleep 1
-        done
-        
+      - name: Wait for MySQL to be ready
+        run: |
+          for i in {1..30}; do
+            if mysqladmin ping -h localhost -uroot -proot1234 --silent; then
+              break
+            fi
+            echo 'Waiting for MySQL to be ready...'
+            sleep 1
+          done
+
       - name: Install dependencies
         run: |
           npm install
