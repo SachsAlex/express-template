@@ -23,10 +23,8 @@ jobs:
     - name: Install dependencies
       run: npm install
     - name: Build the Docker image
-      uses: actions/checkout@v4
       run: docker-compose build
     - name: docker-compse up and health
-      uses: actions/checkout@v4
       run: docker-compose up
     - name: Wait for MySQL
       run: |
